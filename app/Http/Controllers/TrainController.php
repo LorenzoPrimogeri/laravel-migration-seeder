@@ -9,7 +9,7 @@ class TrainController extends Controller
 {
     public function index()
     {
-        $alltrain = Train::all();
-        return view('welcome');
+        $alltrain = Train::where('data_partenza', ">=", Train::raw("curdate()"))->get();
+        return view('index', ["arraytreni" => $alltrain]);
     }
 }
